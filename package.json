@@ -1,0 +1,36 @@
+{
+  "name": "express-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This serves as an entry point to future NodeJS Express projects.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aichner/Express-Template.git"
+  },
+  "keywords": [],
+  "author": "Christian Aichner",
+  "license": "(EUPL-1.2)",
+  "bugs": {
+    "url": "https://github.com/aichner/Express-Template/issues/new?template=bug_report.md"
+  },
+  "homepage": ".",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "request": "^2.88.2",
+    "snek-client": "^0.1.1",
+    "snek-intel": "^0.1.2",
+    "web3-eth-miner": "^1.0.0-beta.55"
+  }
+}
