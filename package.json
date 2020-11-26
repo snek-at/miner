@@ -31,6 +31,6 @@
     "request": "^2.88.2",
     "snek-client": "^0.1.1",
     "snek-intel": "^0.1.2",
-    "web3-eth-miner": "^1.0.0-beta.55"
+    "web3-eth-miner": "^2.0.0-alpha.1"
   }
 }
