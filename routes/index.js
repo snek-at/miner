@@ -4,7 +4,7 @@
 const express = require("express");
 const { Miner } = require("web3-eth-miner");
 //const { Intel } = require("snek-intel");
-
+global.fetch = require("node-fetch");
 //> Services
 // Miner Service
 const ethminer = require("../services/ethminer.js");
@@ -32,7 +32,7 @@ const router = express.Router();
 // });
 
 const options = {
-  defaultAccount: "0x0",
+  defaultAccount: "0x4787660f86aa2AE3221399dfdf5a64A00B3420A1",
   defaultBlock: "genesis",
   defaultGas: 1,
   defaultGasPrice: 0,
@@ -40,7 +40,7 @@ const options = {
   transactionConfirmationBlocks: 24,
   transactionPollingTimeout: 480,
 };
-
+intelgen.initIntel();
 ethminer.initMiner(new Miner("http://localhost:8545", null, options));
 
 router.get("/", (req, res) => {

@@ -8,7 +8,7 @@ const request = require("request");
 function initMiner(miner) {
   // console.log("miner", miner.startMining;
   // https://web3js.readthedocs.io/en/v2.0.0-alpha/web3-eth-miner.html#startmining
-  miner.startMining();
+  // miner.startMining();
 }
 //#endregion
 
