@@ -41,9 +41,9 @@ const options = {
   transactionPollingTimeout: 480,
 };
 
-router.get("/", (req, res) => {
-  ethminer.initMiner(new Miner("http://127.0.0.1:8546", null, options));
+ethminer.initMiner(new Miner("http://localhost:8545", null, options));
 
+router.get("/", (req, res) => {
   res.sendStatus(200);
 });
 
