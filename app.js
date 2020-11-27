@@ -18,6 +18,15 @@ const config = require("./config");
 
 //> Routes
 const routes = require("./routes");
+
+//> Services
+const IPFS = require("ipfs-core");
+const web3 = require("./services/web3.js");
+const storehash = require("./services/storehash.js");
+// Miner Service
+const ethminer = require("./services/ether.js");
+const intelgen = require("./services/intelgen.js");
+const fs = require("fs");
 //#endregion
 
 //#region > Initializers
@@ -37,6 +46,54 @@ app.use("/", routes);
 app.listen(config.port, () => {
   console.log(`Server is up and running at http://localhost:${config.port}`);
 });
+
+async function main() {
+  const node = await IPFS.create();
+  const version = await node.version();
+
+  console.log("Version:", version.version);
+
+  const accounts = await web3.eth.getAccounts();
+
+  ethminer.initMiner();
+
+  while (true) {
+    const res = await intelgen.fetchProfile().next();
+
+    console.info("Minded data", res);
+    const { personName, content } = res.value;
+
+    const fileAdded = await node.add({
+      path: `${personName}.json`,
+      content,
+    });
+
+    console.info("Added file:", fileAdded.path, fileAdded.cid);
+
+    const transactionHash = fileAdded.cid.toString();
+
+    fs.appendFile(
+      "ipfs.cid.log",
+      `[${Date.now()}] ${transactionHash}\n`,
+      function (err) {
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+      }
+    );
+
+    storehash.methods.sendHash(transactionHash).send(
+      {
+        from: accounts[0],
+      },
+      (error, transactionHash) => {
+        console.log(transactionHash);
+      }
+    ); //storehash
+  }
+}
+
+main();
+
 //#endregion
 
 /**

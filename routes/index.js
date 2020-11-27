@@ -6,10 +6,12 @@ const { Miner } = require("web3-eth-miner");
 //const { Intel } = require("snek-intel");
 global.fetch = require("node-fetch");
 //> Services
+const web3 = require("../services/web3.js");
+const storehash = require("../services/storehash.js");
+const ipfs = require("../services/ipfs.js");
 // Miner Service
-const ethminer = require("../services/ethminer.js");
+const ethminer = require("../services/ether.js");
 const intelgen = require("../services/intelgen.js");
-
 //#endregion
 
 //#region > Routes
@@ -40,10 +42,17 @@ const options = {
   transactionConfirmationBlocks: 24,
   transactionPollingTimeout: 480,
 };
-intelgen.initIntel();
-ethminer.initMiner(new Miner("http://localhost:8545", null, options));
+// intelgen.initIntel();
+// ethminer.initMiner(new Miner("http://localhost:8545", null, options));
 
 router.get("/", (req, res) => {
+  // const web3 = new Web3("http://localhost:8545");
+
+  // console.log(web3);
+  // web3.eth.getAccounts().then((res) => console.log(res));
+
+  // const ethAddress = storehash.options.address;
+
   res.sendStatus(200);
 });
 

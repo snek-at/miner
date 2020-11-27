@@ -12,16 +12,16 @@ INTEL_SNEK.client = CLIENT_SNEK;
 
 //#region > Functions
 // Get all foos
-function initIntel(intel) {
-  daemon();
-}
-async function daemon() {
-  const profileGen = fetchProfile();
-  while (true) {
-    const res = await profileGen.next();
-    console.log(res);
-  }
-}
+// function initIntel(intel) {
+//   daemon();
+// }
+// async function daemon() {
+//   const profileGen = fetchProfile();
+//   while (0) {
+//     const res = await profileGen.next();
+//     console.log(res);
+//   }
+// }
 
 async function* fetchProfile() {
   while (true) {
@@ -34,10 +34,12 @@ async function* fetchProfile() {
 
     for (const index in users) {
       const personName = users[index].slug.split("-")[1];
-      console.log(personName);
-      yield await INTEL_SNEK.person.processProfiles({
-        personName: users[index].slug.split("-")[1],
+
+      await INTEL_SNEK.person.processProfiles({
+        personName,
       });
+
+      yield { personName, content: "JSON STRING" + Math.random().toString() };
     }
   }
 }
@@ -45,7 +47,7 @@ async function* fetchProfile() {
 //#endregion
 
 //#region > Exports
-module.exports.initIntel = initIntel;
+module.exports.fetchProfile = fetchProfile;
 //#endregionnpm
 
 /**
