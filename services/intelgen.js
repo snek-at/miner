@@ -11,23 +11,11 @@ INTEL_SNEK.client = CLIENT_SNEK;
 //#endregion
 
 //#region > Functions
-// Get all foos
-// function initIntel(intel) {
-//   daemon();
-// }
-// async function daemon() {
-//   const profileGen = fetchProfile();
-//   while (0) {
-//     const res = await profileGen.next();
-//     console.log(res);
-//   }
-// }
-
 async function* fetchProfile() {
   while (true) {
     const auth = await CLIENT_SNEK.session.begin({
-      username: "admin",
-      password: "",
+      username: process.env.SNEK_USERNAME,
+      password: process.env.SNEK_PASSWORD,
     });
 
     const users = await INTEL_SNEK.person.allBrief();

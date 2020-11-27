@@ -17,7 +17,6 @@ const options = {
 //#region > Functions
 // Get all foos
 function initMiner() {
-  // console.log("miner", miner.startMining;
   // https://web3js.readthedocs.io/en/v2.0.0-alpha/web3-eth-miner.html#startmining
   new Miner("http://localhost:8545", null, options).startMining();
 }
