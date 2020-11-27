@@ -35,11 +35,11 @@ async function* fetchProfile() {
     for (const index in users) {
       const personName = users[index].slug.split("-")[1];
 
-      await INTEL_SNEK.person.processProfiles({
+      const generatedData = await INTEL_SNEK.person.processProfiles({
         personName,
       });
 
-      yield { personName, content: "JSON STRING" + Math.random().toString() };
+      yield { personName, content: JSON.stringify(generatedData) };
     }
   }
 }

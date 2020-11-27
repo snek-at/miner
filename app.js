@@ -62,9 +62,10 @@ async function main() {
 
     console.info("Minded data", res);
     const { personName, content } = res.value;
+    const fileName = `snek_person_${personName}.json`;
 
     const fileAdded = await node.add({
-      path: `${personName}.json`,
+      path: fileName,
       content,
     });
 
@@ -77,7 +78,7 @@ async function main() {
       `[${Date.now()}] ${transactionHash}\n`,
       function (err) {
         if (err) throw err;
-        console.log('The "data to append" was appended to file!');
+        console.log(`${fileName} added to IPFS!`);
       }
     );
 
